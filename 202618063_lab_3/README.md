@@ -1,40 +1,76 @@
-#Lab Assignment - 3
-Scikit-learn: Data Preprocessing and Model Performance Evaluation
-#name:Mayank Baid
+# Lab Assignment - 3
 
-Dataset Link
-Hotel Booking Demand Dataset (Kaggle)(https://www.kaggle.com/datasets/jessemostipak/hotel-booking-demand)
+## Scikit-learn: Data Preprocessing and Model Performance Evaluation
 
-Preprocessing Choices
+**Name:** Mayank Baid
+**Course:** DS605: Fundamentals of Machine Learning
 
-Target Distribution: Identified target variable `is_canceled` with 62.96% non-canceled (0) and 37.04% canceled (1) records.
+## Dataset
 
-Feature Classification: Separated dataset features into 19 numerical columns (e.g., `lead_time`, `adr`, `booking_changes`) and 12 categorical columns (e.g., `hotel`, `market_segment`, `deposit_type`).
+**Dataset:** Hotel Booking Demand Dataset
+**Source:** Kaggle – Jesse Mostipak
+**Dataset Link:** https://www.kaggle.com/datasets/jessemostipak/hotel-booking-demand
 
-Missing Value Handling: Identified missing values in `company` (112,593 missing / 94.31%), `agent` (16,340 missing / 13.69%), `country` (488 missing / 0.41%), and `children` (4 missing / 0.00%).
+The dataset contains **119,390 hotel booking records**. The target variable is `is_canceled`, which indicates whether a booking was canceled.
 
+## Preprocessing & Workflow
 
-Feature Dropping: Dropped the `company` column due to extreme missingness (>94%), reducing total feature count from 31 down to 30 ($119,390 \times 30$).
+### 1. Target Analysis
 
+* `0` – Not Canceled: **62.96%**
+* `1` – Canceled: **37.04%**
+* The moderate class imbalance makes **F1-Score and ROC-AUC** more useful than accuracy alone.
 
+### 2. Feature Classification
 
-Final Observations:
+* **19 numerical features:** `lead_time`, `adr`, `booking_changes`, etc.
+* **12 categorical features:** `hotel`, `market_segment`, `deposit_type`, etc.
 
-Target Imbalance: Moderate class imbalance (~37% cancellations) requires evaluation via F1-Score or ROC-AUC rather than standard accuracy.
+### 3. Missing Values
 
-Booking Source Profile: High missingness in company indicates low corporate usage, showing guests primarily book individually or via travel agencies.  
+Missing values were identified in:
 
-Encoding Requirements: Categorical attributes (country, market_segment) and temporal columns (reservation_status_date) require proper encoding before model training..
+* `company`: **112,593 (94.31%)**
+* `agent`: **16,340 (13.69%)**
+* `country`: **488 (0.41%)**
+* `children`: **4**
 
-Lead Time Impact: Longer lead_time correlates directly with higher cancellation risk, as plans made far in advance are more prone to changes.
+The `company` column was dropped due to its extremely high missingness, reducing the dataset to **119,390 × 30**.
 
-Deposit Type Influence: Bookings marked as Non Refund paradoxically show high cancellation rates in this dataset due to bulk institutional or agency block reservations.
+### 4. Encoding & Preprocessing
 
-Room Type Discrepancies: A change between reserved_room_type and assigned_room_type significantly lowers cancellation likelihood, as room upgrades enhance guest retention.
+Categorical variables such as `country`, `market_segment`, `hotel`, and `deposit_type` require encoding before model training. Temporal data such as `reservation_status_date` also requires suitable feature transformation.
 
-Special Requests & Parking: Guests requesting required_car_parking_spaces or multiple total_of_special_requests have near-zero cancellation rates, indicating strong booking intent.
+## Key Insights
 
-Repeated Guests Behavior: is_repeated_guest shows an extremely low cancellation probability, making customer loyalty a strong predictor of completion.
+* **Lead Time:** Longer lead times are generally associated with higher cancellation risk.
+* **Deposit Type:** `Non Refund` bookings show unexpectedly high cancellation rates in this dataset.
+* **Room Type:** Differences between reserved and assigned room types are associated with lower cancellation likelihood.
+* **Special Requests:** Parking requirements and multiple special requests indicate stronger booking intent and lower cancellation rates.
+* **Repeated Guests:** Repeated guests have extremely low cancellation probability.
+* **Market Segment:** Groups and Online Travel Agents show higher cancellation rates than Direct and Corporate segments.
+* **Company Missingness:** The high missingness in `company` suggests limited corporate booking information.
 
-Market Segment Variances: Groups and Online Travel Agents (TA) exhibit noticeably higher cancellation rates compared to Direct or Corporate segments.
+## Model Evaluation
 
+Due to the class imbalance, model performance should be evaluated using:
+
+* **Precision**
+* **Recall**
+* **F1-Score**
+* **ROC-AUC**
+* Accuracy as a supplementary metric
+
+## Project Structure
+
+```text
+Mayank_063_ds/
+│
+├── preprocessing.ipynb
+├── hotel_bookings.csv
+└── README.md
+```
+
+## Conclusion
+
+The preprocessing workflow prepares the Hotel Booking Demand dataset for machine learning by handling missing values, classifying features, identifying encoding requirements, and selecting appropriate evaluation metrics. The analysis highlights **lead time, deposit type, market segment, repeated guest status, and special requests** as important factors related to booking cancellation.
