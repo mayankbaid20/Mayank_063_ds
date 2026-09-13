@@ -1,8 +1,11 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+from pathlib import Path
 import joblib
 
+BASE_DIR = Path(__file__).resolve().parent.parent
+model = joblib.load(BASE_DIR / "models" / "airbnb_price_pipeline.pkl")
 
 # -----------------------------------
 # Page settings
