@@ -1,0 +1,19 @@
+Metric,Value
+Sklearn Regression MAE,0.10845261337977505
+Sklearn Regression RMSE,0.14861757809593648
+Sklearn Regression R2,0.16816825663056223
+Manual Regression MAE,0.10845261337977516
+Manual Regression RMSE,0.14861757809593654
+Manual Regression R2,0.16816825663056179
+Sklearn Classification Accuracy,0.775
+Sklearn Classification Precision,0.7808219178082192
+Sklearn Classification Recall,0.9661016949152542
+Sklearn Classification F1,0.8636363636363636
+Manual Classification Accuracy,0.775
+Manual Classification Precision,0.783410138248848
+Manual Classification Recall,0.96045197740113
+Manual Classification F1,0.8629441624365483
+Optimized Manual Accuracy,0.775
+Optimized Manual Precision,0.783410138248848
+Optimized Manual Recall,0.96045197740113
+Optimized Manual F1,0.8629441624365483
