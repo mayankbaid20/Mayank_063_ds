@@ -4,8 +4,8 @@ Assignment Information
 
 * Course: DS605: Fundamentals of Machine Learning
 * Assignment: Lab Assignment 5 – Regression and Classification, Scikit-learn vs. From-Scratch NumPy/Pandas Implementations
-* Name: *\<your name\>*
-* ID: *\<your ID\>*
+* Name: *\<Mayank Baid\>*
+* ID: *\<202618063\>*
 * Dataset: Garments Worker Productivity Dataset (`garments_worker_productivity.csv`)
 
 Project Details
